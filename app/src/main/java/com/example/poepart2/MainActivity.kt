@@ -41,6 +41,18 @@ val loginText = findViewById<TextView>(R.id.loginText)
             val username1 = username.text.toString()
             val password1 = password.text.toString()
 
+            if (username1.isEmpty()) {
+                username.error = "Username cannot be empty"
+                username.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password1.isEmpty()) {
+                password.error = "Password cannot be empty"
+                password.requestFocus()
+                return@setOnClickListener
+            }
+
             auth.signInWithEmailAndPassword(username1, password1)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {

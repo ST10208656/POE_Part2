@@ -18,7 +18,7 @@
         android:layout_marginBottom="685dp"
         android:textColor="#EB00FF"
         android:textSize="34sp"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="112dp"
         android:layout_marginTop="110dp"
         android:layout_marginEnd="89dp"
@@ -35,17 +35,18 @@
         android:ems="10"
         android:background="@drawable/edit_text_background"
         android:fontFamily="@font/montserrat"
-        android:hint="Enter username"
+        android:hint="@string/enter_email"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="110dp"
         android:layout_marginTop="212dp"
         android:layout_marginEnd="91dp"
@@ -53,12 +54,13 @@
         android:ems="10"
         android:background="@drawable/edit_text_background"
         android:fontFamily="@font/montserrat"
-        android:hint="Enter password"
+        android:hint="@string/enter_password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -72,7 +74,7 @@
         android:backgroundTint="@null"
         app:backgroundTint="@null"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#7A7A7A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +92,7 @@
         android:backgroundTint="#00FFFFFF"
         android:fontFamily="@font/montserrat_bold"
         android:shadowColor="#000000"
-        android:text="click to sign up"
+        android:text="@string/click_to_sign_up"
         android:textColor="#2962FF"
         app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"

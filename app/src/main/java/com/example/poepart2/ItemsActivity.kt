@@ -24,10 +24,9 @@ class ItemsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var textView: TextView
     private lateinit var firebaseDataManager: FirebaseDataManager
-    private lateinit var collection: Collection
-    private lateinit var categoryGoalTextView: TextView
+
     private lateinit var categoryGoal: String
-    private lateinit var progressBarHorizontal: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items)
@@ -44,9 +43,6 @@ class ItemsActivity : AppCompatActivity() {
         selectedCollectionName = intent.getStringExtra("collectionName") ?: ""
         textView = findViewById(R.id.textView3)
         textView.text = selectedCollectionName
-       categoryGoalTextView = findViewById<TextView>(R.id.categoryGoalTextView)
-        val message ="Goal: $categoryGoal"
-        categoryGoalTextView.text = message
         val textShader = LinearGradient(
             0f, 0f, textView.textSize * textView.text.length, textView.textSize,
             intArrayOf(resources.getColor(R.color.textStartColor), resources.getColor(R.color.textEndColor)),
@@ -109,7 +105,7 @@ private fun retrieveNumOfItems(items: MutableList<Item>) {
             })
         firebaseDataManager.readCategory(selectedUserId, selectedCategoryId, object: FirebaseDataManager.DataStatus {
             override fun DataIsLoaded(category:Category){
-                updateData(category)
+
             }
 
             override fun DataIsLoaded(categories: MutableList<Category>) {}
@@ -121,10 +117,7 @@ private fun retrieveNumOfItems(items: MutableList<Item>) {
         })
 
     }
-    private fun updateData(category: Category){
-        val message = "Goal: ${category.categoryGoal}"
-        categoryGoalTextView.text = message
-    }
+
 }
 
     class ItemAdapter(private val items: MutableList<Item>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
