@@ -1,0 +1,25 @@
+<!-- button_with_gradient_stroke.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gradient background -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/textStartColor"
+                android:endColor="@color/startColor"
+                android:type="linear"
+                android:angle="90" />
+            <corners android:radius="50dp" />
+        </shape>
+    </item>
+    <!-- Plain background with smaller size to show the gradient background as an outline -->
+    <item
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="50dp" />
+        </shape>
+    </item>
+</layer-list>

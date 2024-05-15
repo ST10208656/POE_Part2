@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">POE Part 2</string>
+    <string name="photo">Photo</string>
+    <string name="category_goal">Category goal: %1$s</string>
+</resources>
