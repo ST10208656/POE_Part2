@@ -1,10 +1,13 @@
 package com.example.poepart2
 
 import android.content.Intent
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -28,7 +31,7 @@ class SignUp : AppCompatActivity() {
         val name = findViewById<EditText>(R.id.nameText)
         val surname = findViewById<EditText>(R.id.surnameText)
         val signupButton = findViewById<Button>(R.id.signupButton)
-
+val signUpMessage = findViewById<TextView>(R.id.signupText)
         signupButton.setOnClickListener {
             val email = username.text.toString().trim()
             val pass = password.text.toString().trim()
@@ -39,6 +42,12 @@ class SignUp : AppCompatActivity() {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            val textShader = LinearGradient(
+                0f, 0f, signUpMessage.textSize * signUpMessage.text.length, signUpMessage.textSize,
+                intArrayOf(resources.getColor(R.color.textStartColor), resources.getColor(R.color.textEndColor)),
+                null, Shader.TileMode.CLAMP
+            )
+            signUpMessage.paint.shader = textShader
 
             auth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this) { task ->
