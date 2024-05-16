@@ -17,7 +17,8 @@
         android:scaleType="fitCenter"
         android:src="@drawable/refresh123"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="A refresh button" />
 
     <TextView
         android:id="@+id/textView1"
@@ -59,10 +60,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
         android:max="100"
         android:progress="0"
         android:progressBackgroundTint="@android:color/darker_gray"
-        android:progressTint="@color/black"
+        android:progressTint="#00FFC2"
         app:layout_constraintBottom_toTopOf="@id/pleaseSelectCollectionText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/categoryGoalTextView"

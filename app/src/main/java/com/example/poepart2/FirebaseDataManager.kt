@@ -172,12 +172,13 @@ private val collectionsRef: CollectionReference = FirebaseFirestore.getInstance(
     fun deleteCategory(category: Category) {
         categoriesRef.document(category.id).delete()
             .addOnSuccessListener {
-                // Deletion successful
+                Log.d(TAG, "Category deleted successfully")
             }
             .addOnFailureListener { e ->
-                // Handle any errors
+                Log.w(TAG, "Error deleting category", e)
             }
     }
+
 
     fun readCollections(userID: String, categoryId: String, dataStatus: CollectionDataStatus) {
         firestore.collection("Users").document(userID).collection("Categories")

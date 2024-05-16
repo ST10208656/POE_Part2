@@ -22,6 +22,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -94,7 +95,26 @@ class MainActivity2 : AppCompatActivity() {
             intent.putExtra("userId", userId)// Pass category ID to CollectionsActivity
             startActivity(intent)
         }
+        categoryAdapter.onDeleteClick = { category ->
+            deleteCategory(category)
+        }
     }
+    private fun deleteCategory(category: Category) {
+        val categoryId = category.id
+        if (categoryId.isEmpty()) {
+            Toast.makeText(this, "Category ID is empty", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        firebaseDataManager.deleteCategory(category)
+
+        // Handle UI after deletion
+        categoryAdapter.categories.remove(category)
+        categoryAdapter.notifyDataSetChanged()
+
+        Toast.makeText(this, "Category deleted successfully", Toast.LENGTH_SHORT).show()
+    }
+
     private fun refreshItemList() {
         firebaseDataManager.readCategories(userId,
             object : FirebaseDataManager.DataStatus{
@@ -113,12 +133,14 @@ class MainActivity2 : AppCompatActivity() {
     }
 }
 
-class CategoryAdapter(private val categories: MutableList<Category>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(val categories: MutableList<Category>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     var onItemClick: ((Category) -> Unit)? = null
+    var onDeleteClick: ((Category) -> Unit)? = null
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryNameTextView: TextView = itemView.findViewById(R.id.categoryNameTextView1)
+        val deleteCategoryButton: ImageButton = itemView.findViewById(R.id.deleteCategoryButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -145,6 +167,9 @@ class CategoryAdapter(private val categories: MutableList<Category>) : RecyclerV
         holder.categoryNameTextView.text = category.categoryName
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(category)
+        }
+        holder.deleteCategoryButton.setOnClickListener {
+            onDeleteClick?.invoke(category)
         }
     }
 
